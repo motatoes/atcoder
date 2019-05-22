@@ -1,0 +1,230 @@
+.. _ABC125:
+
+`ABC 125 Editorial <https://atcoder.jp/contests/abc125>`_
+=====================
+
+
+.. _ABC125A:
+
+`Problem A: Biscuit Generator <https://atcoder.jp/contests/abc125/tasks/abc125_a>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Given that the constraints for problem are quite small we can loop over the values in increasing length and stop at the first point when the time exceeds *T*. Sample C++ solution below:
+
+.. code-block:: C++
+    :linenos:
+
+    #include <bits/stdc++.h>
+
+    using namespace std;
+
+    int main () {
+
+        // S = A + 2A + 3A + 4A + 5A ... n(A)
+
+        int t, a, b;
+        int s = 0;
+        cin >> a >> b >> t;
+
+        int A = a;
+
+        while (A <= t) {
+            s += b;
+            A += a;
+        }
+        
+        cout << s << endl;
+
+        return 0;
+    }
+
+.. _ABC125B:
+
+`Problem B: Resale <https://atcoder.jp/contests/abc125/tasks/abc125_b>`_
+^^^^^^^^^^^^^^^^^
+
+We want to maximise the difference of the sum of values (X) and the sum of costs (Y): :math:`X - Y`. This is equivalent to maximising the difference of each sum and the corresponding value:
+
+:math:`S = (V_1 - C_1) + (V_2 - C_2) + (V_3 - C_3) + \dots + (V_3 - C_n)`
+
+As the above equation is a sum of terms then to maximise S we need to avoid any negative terms and only sum the positive terms. This will be the case when each term has :math:`V_i > C_i`. Therefore we can solve this problem greedily be checking each pair of `V_i` and `C_i` and only appending it to our maximum sum if the difference is above zero. Sample C++ solution bellow:
+
+.. code-block:: C++
+    :linenos:
+
+    #include <bits/stdc++.h>
+    using namespace std;
+    int main () {
+        int n;
+        int v[51];
+        int c[51];
+        cin >> n;
+        for (int i=0; i<n; i++) {
+            cin >> v[i];
+        }
+        for (int i=0; i<n; i++) {
+            cin >> c[i];
+        }
+        int s = 0;
+        for (int i=0; i< n; i++) {
+            int diff = v[i] - c[i];
+            if (diff > 0) {
+                s += diff;
+            }
+        }
+        cout << s << endl;
+        return 0;
+    }
+
+.. _ABC125C:
+
+`Problem C: GCD On Blackboard <https://atcoder.jp/contests/abc125/tasks/abc125_c>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In order to solve this problem we need to know about some properties of the greatest common divisors (GCDs). 
+
+The first point is that GCDs are commutative (:math:`GCD(a,b) = GCD(b,a)`). 
+
+The second is that the GCD of 3 numbers is associative (:math:`GCD(a,GCD(b,c)) = GCD(GCD(a,b),c)`). 
+
+Finally, without loss of generality, if a and b are 2 postive numbers and a <= b then GCD(a,b) <= a. In other words, the GCD of 2 numbers is atmost equal to the smaller number. 
+
+Going back the problem statement, we have a list of numbers and we are allowed to modify one number from the list and replace it with another number to maximise the GCD of the list. let us apply what we already know about GCDs to this problem:
+
+Let's say that our list :math:`A=A_1, A_2, A_3, \dots, A_n`, and we wish to modify an index :math:`A_i`. As per the associativity rule, we know that: :math:`GCD(A_1, A_2, A_3, \dots, A_i, \dots, A_n)` can be reordered as: :math:`GCD(A_1, A_2, A_3, \dots, A_n, A_i)`. In other words, we can compute the GCD of all numbers except :math:`A_i` and then compute the result of the GCD of the result, with :math:`A_i`. let `g` be the GCD of all the numbers except `A_i`. Now we wish to maximise :math:`GCD(g, A_i)`. Since the maximum GCD we can get after modiffication of `A_i` is `g`, the answer is infact `g`. 
+
+Hence we know that the maximum gcd we can get at location `i` is the gcd of all number except `A_i`. If we compute these gcd values at each `i`, then the maximum of all results is the maximum possible GCD after modifying a number in the list.
+
+So how will we implement this algorithm? For convinience lets define 2 functions of :math:`R_i` and :math:`L_i` as follows:
+
+    :math:`R_{n+1} = 0`
+
+    :math:`R_i = GCD(R_{i+1}, A_i)`
+
+    :math:`L_0 = 0`
+
+    :math:`L_i = GCD(L_{i-1}, A_i)`
+
+:math:`L_i` represent the gcd of :math:`A_1 \dots A_i` while :math:`R_i` represents the GCD of :math:`A_i \dots A_n`. If we wish to find the GCD of all elements except `A_i` then we can find :math:`M_i = GCD(L_i-1, R_i+1)`. This represents the GCD of all the numbers except :math:`A_i`.
+
+We can precompute `R` And `L`. Finally we can find each value of `M_i` and then compute the maximum value which will be our answer. Sample code is bellow (complexity is O(n)):
+
+.. code-block:: C++
+    :linenos:
+
+    #include <bits/stdc++.h>
+
+    using namespace std;
+    const int N = 100000+5;
+
+    int main () {
+        // L_i = gcd(A_1, A_2, A_3, ... A_i)
+        // R_i = gcd(A_i, A_{i+1}, A_{i+1}, ..., A_n)
+        int n;
+        int A[N];
+        int R[N];
+        int L[N];
+
+        cin >> n;
+        for (int i=1; i<=n; i++) {
+            cin >> A[i];
+            L[i] = A[i];
+            R[i] = A[i];
+        }
+
+        // precomputing L[i]
+        for (int i=1; i<=n; i++) {
+            L[i] = __gcd(L[i], L[i-1]);
+        }
+        // precomputing R[i]
+        for (int i=n; i>0; i--) {
+            R[i] = __gcd(R[i], R[i+1]);
+        }
+
+        // computing each m_i and the max value
+        int res = 0;
+        for (int i=1; i<=n; i++) {
+            int m = __gcd(L[i-1], R[i+1]);
+            if (m > res) {
+                res = m;
+            }
+        }
+
+        cout << res;
+        return 0;
+    }
+
+.. _ABC125D:
+
+`Problem D: Flipping Signs <https://atcoder.jp/contests/abc125/tasks/abc125_d>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Lets consider a list of elements :math:`A_1, A_2, A_3, \dots, A_n`. We are allowed to flip the signs of any 2 consecutive elements :math:`A_i` and :math:`A_{i+1}`. One useful observation to notice is that (with the exception for the last element), we can flip the sign of any :math:`A_i` without affecting :math:`A_{i-1}`.
+
+But how can we make use of this fact? Well we know that we can make every element from :math:`i=1` upto :math:`i=n-1` to be positive for any list. Since we don't care about the number of operations, this greedy method works pretty well.
+
+Given any list of numbers :math:`A` we will be able to use this method to get every :math:`A_i` to be positive except the last element. The last element will be either negative or positive. Let us handle this case separately.
+
+So now we have either the last element as positive or negative. If it is positive then all the elements are positive and the sum of the list is our answer. If it is negative, then we need to check a few variations to get our maximum sum result. First of all we need to check which of the last 2 elements is larger. Since we can make the last element positive while making :math:`A_{n-1}` negative. In fact, we can make any :math:`A_j` negative (:math:`j<n`) in order to make the last element positive. Consider three consecutive elements which are positive :math:`a, b, c`. We can first flip the signs of both `a` and `b` which will make them negative. In the next step we can flip `b`'s sign which will make `b` postiive and `c` negative. This will leave `a` as negative, and we can once again flip `c`'s sign to make it positive, and so on. We can chain this operation which will leave only `a` as negative and the rest of the elements remain positive (except the last element, which will change from negative to positive). 
+
+Hence we have the recipe for the final step in the algorithm: We check the minimum element in the range :math:`A_1 \dots A_{n-1}`. Call this min element :math:`m`. If :math:`m < A_n` then we flip the sign of `m` to negative and make :math:`A_n` positive. Otherwise we keep `m` as positive. The sum of this list is our answer.
+
+Bellow is a c++ implementation of this solution. Note that this solution handles the case of :math:`{A_{n-1}, A_n}` separately from the rest of the list, but it is identical to the algorithm mentioned above.
+
+.. code-block:: C++
+    :linenos:
+
+    #include <bits/stdc++.h>
+    using namespace std;
+    #define ll long long
+    #define forr(a,b,v) for(int v=a; v<=b; v++)
+    #define ford(a,b,v) for(int v=a; v>=b; v--)
+    const int N = 100005;
+    int main () {
+        int n;
+        int A[N];
+        // store the sum of the result in a long long pair
+        ll s = 0;
+        cin >> n;
+        forr(1,n,i) {
+            cin >> A[i];
+        }
+
+        forr(1,n-2,i) {
+            if (A[i] < 0) {
+                A[i] *= -1;
+                A[i+1] *= -1;
+            }
+            s += A[i];
+        }
+        // if n is 2, we only need to consider those
+        // Also , if the last 2 elements are either both positive 
+        // or both negative then we simply flip their signs too
+        if ( (n==2) or 
+            (A[n] > 0 and A[n-1] > 0) or 
+            (A[n] < 0 and A[n-1] < 0) ) {
+            s += max(A[n-1] + A[n], -A[n-1]-A[n]);
+        }
+        else {
+            // find the min element in the list (excluding last 2 elements)
+            int* mni = min_element( A+1, A+n-2);
+            int mnv = *mni;
+
+            // if the minimum value in the remaining list is larger than 
+            // the smaller value of the last 2 elements, then we should
+            // just keep it positive
+            if ( mnv > min(abs(A[n-1]), abs(A[n])) ) {
+                s += max(A[n-1] + A[n], -A[n-1]-A[n]);
+            }
+            // otherwise, we can make that value negative, and include the
+            // last 2 elements as positive elements
+            else {
+                s -= mnv * 2;
+                s += abs(A[n-1]);
+                s += abs(A[n]);
+            }
+        }
+
+        cout << s << endl;
+        return 0;
+    }
