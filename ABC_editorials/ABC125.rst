@@ -47,7 +47,7 @@ We want to maximise the difference of the sum of values (X) and the sum of costs
 
 :math:`S = (V_1 - C_1) + (V_2 - C_2) + (V_3 - C_3) + \dots + (V_3 - C_n)`
 
-As the above equation is a sum of terms then to maximise S we need to avoid any negative terms and only sum the positive terms. This will be the case when each term has :math:`V_i > C_i`. Therefore we can solve this problem greedily be checking each pair of `V_i` and `C_i` and only appending it to our maximum sum if the difference is above zero. Sample C++ solution bellow:
+As the above equation is a sum of terms then to maximise S we need to avoid any negative terms and only sum the positive terms. This will be the case when each term has :math:`V_i > C_i`. Therefore we can solve this problem greedily be checking each pair of :math:`V_i` and :math:`C_i` and only appending it to our maximum sum if the difference is above zero. Sample C++ solution bellow:
 
 .. code-block:: C++
     :linenos:
