@@ -1,3 +1,6 @@
+[![Documentation Status](https://readthedocs.org/projects/atcoder/badge/?version=latest)](https://atcoder.readthedocs.io/en/latest/?badge=latest)
+
+
 Introduction
 ===========
 
