@@ -105,9 +105,9 @@ So how will we implement this algorithm? For convinience lets define 2 functions
 
     :math:`L_i = GCD(L_{i-1}, A_i)`
 
-:math:`L_i` represent the gcd of :math:`A_1 \dots A_i` while :math:`R_i` represents the GCD of :math:`A_i \dots A_n`. If we wish to find the GCD of all elements except `A_i` then we can find :math:`M_i = GCD(L_{i-1}, R_{i+1})`. This represents the GCD of all the numbers except :math:`A_i`.
+:math:`L_i` represent the gcd of :math:`A_1 \dots A_i` while :math:`R_i` represents the GCD of :math:`A_i \dots A_n`. If we wish to find the GCD of all elements except :math:`A_i` then we can find :math:`M_i = GCD(L_{i-1}, R_{i+1})`. This represents the GCD of all the numbers except :math:`A_i`.
 
-We can precompute `R` And `L`. Finally we can find each value of `M_i` and then compute the maximum value which will be our answer. Sample code is bellow (complexity is O(n)):
+We can precompute `R` And `L`. Finally we can find each value of :math:`M_i` and then compute the maximum value which will be our answer. Sample code is bellow (complexity is O(n)):
 
 .. code-block:: C++
     :linenos:
