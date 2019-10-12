@@ -7,7 +7,7 @@
 .. _ABC125A:
 
 `Problem A: Biscuit Generator <https://atcoder.jp/contests/abc125/tasks/abc125_a>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Given that the constraints for problem are quite small we can loop over the values in increasing length and stop at the first point when the time exceeds *T*. Sample C++ solution below:
 
@@ -41,7 +41,7 @@ Given that the constraints for problem are quite small we can loop over the valu
 .. _ABC125B:
 
 `Problem B: Resale <https://atcoder.jp/contests/abc125/tasks/abc125_b>`_
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We want to maximise the difference of the sum of values (X) and the sum of costs (Y): :math:`X - Y`. This is equivalent to maximising the difference of each sum and the corresponding value:
 
@@ -79,7 +79,7 @@ As the above equation is a sum of terms then to maximise S we need to avoid any 
 .. _ABC125C:
 
 `Problem C: GCD On Blackboard <https://atcoder.jp/contests/abc125/tasks/abc125_c>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In order to solve this problem we need to know about some properties of the greatest common divisors (GCDs). 
 
@@ -157,7 +157,7 @@ We can precompute `R` And `L`. Finally we can find each value of :math:`M_i` and
 .. _ABC125D:
 
 `Problem D: Flipping Signs <https://atcoder.jp/contests/abc125/tasks/abc125_d>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Lets consider a list of elements :math:`A_1, A_2, A_3, \dots, A_n`. We are allowed to flip the signs of any 2 consecutive elements :math:`A_i` and :math:`A_{i+1}`. One useful observation to notice is that (with the exception for the last element), we can flip the sign of any :math:`A_i` without affecting :math:`A_{i-1}`.
 

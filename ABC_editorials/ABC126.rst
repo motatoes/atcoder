@@ -1,0 +1,37 @@
+.. _ABC126:
+
+`ABC 126 Editorial <https://atcoder.jp/contests/abc126>`_
+=====================
+
+
+.. _ABC126A:
+
+`Problem A: Changing a Character <https://atcoder.jp/contests/abc126/tasks/abc126_a>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The key here is to print all the characters as they are, and change the one at index `k-1`. This character will be lowercased. We will use C++ `lowercase` function to achieve this. Code is below:
+
+.. code-block:: C++
+    :linenos:
+
+    #include<bits/stdc++.h>
+
+    using namespace std;
+
+    int main () {
+      
+        int n, k;
+        string s;
+      
+        cin >> n >> k >> s;
+      
+        for (int i=0; i< n; i++) {
+          if (i == k-1) putchar( tolower(s[i]) );
+          else putchar(s[i]);
+        }
+        
+        return 0;
+
+      
+      return 0;
+    }
