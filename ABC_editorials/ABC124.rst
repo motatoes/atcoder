@@ -1,0 +1,35 @@
+
+.. _ABC124:
+
+`ABC 124 Editorial <https://atcoder.jp/contests/abc124>`_
+=====================
+
+
+.. _ABC124A:
+
+`Problem A: Buttons <https://atcoder.jp/contests/abc126/tasks/abc124_a>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The idea of this problem is to chose the maximum button during the first button press. During the second button press, we will chose the maximum after subtracting 1 from the button we just pressed. The code bellow simulates this process:
+
+.. code-block:: C++
+    :linenos:
+
+    #include <bits/stdc++.h>
+
+    using namespace std;
+
+    int main () {
+      
+      int a, b;
+      cin >> a >> b;
+      
+      if ( a > b) {
+          cout << max(a,b) + max(a-1,b);
+      } else {
+          cout << max(a,b) + max(a,b-1);
+      }
+       
+      return 0;
+      
+    }
