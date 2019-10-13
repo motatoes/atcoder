@@ -2,12 +2,12 @@
 .. _ABC124:
 
 `ABC 124 Editorial <https://atcoder.jp/contests/abc124>`_
-=====================
+===============================================================
 
 
 .. _ABC124A:
 
-`Problem A: Buttons <https://atcoder.jp/contests/abc126/tasks/abc124_a>`_
+`Problem A: Buttons <https://atcoder.jp/contests/abc124/tasks/abc124_a>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The idea of this problem is to chose the maximum button during the first button press. During the second button press, we will chose the maximum after subtracting 1 from the button we just pressed. The code bellow simulates this process:

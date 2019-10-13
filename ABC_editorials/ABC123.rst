@@ -2,13 +2,13 @@
 .. _ABC123:
 
 `ABC 123 Editorial <https://atcoder.jp/contests/abc123>`_
-=====================
+===============================================================
 
 
 .. _ABC123A:
 
-`Problem A: Buttons <https://atcoder.jp/contests/abc123/tasks/abc123_a>`_
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`Problem A: Five Antennas <https://atcoder.jp/contests/abc123/tasks/abc123_a>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Since the numbers are sorted, it is enough to look at the distance between the first and the last antenna. This will be the greatest possible distance. Thus if this distance is greater than `k`, then we output `":("`. Otherwise, we output `"Yay!"`. Sample code below:
 
