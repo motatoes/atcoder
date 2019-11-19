@@ -1,0 +1,24 @@
+.. _ABC129:
+
+`ABC 129 Editorial <https://atcoder.jp/contests/abc129>`_
+===============================================================
+
+
+.. _ABC129A:
+
+`Problem A: Changing a Character <https://atcoder.jp/contests/abc129/tasks/abc129_a>`_
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To solve the Airplane problem, we will need to check only three options, a + b, a + c and b + c. We will calculate it into a list, and chose the minimum value. 
+
+.. code-block:: python3
+    :linenos:
+
+
+    s = input()
+    l = s.split(' ')
+    m = list(map(int, l))
+    p, q, r = m
+    list_of_times = [p + q, p + r, q + r]
+    f = min(list_of_times)
+    print(f)
