@@ -1,6 +1,6 @@
-.. _ABC126:
+.. _ABC128:
 
-`ABC 128 Editorial <https://atcoder.jp/contests/abc126>`_
+`ABC128 Editorial <https://atcoder.jp/contests/abc126>`_
 ===============================================================
 
 
@@ -14,23 +14,25 @@ This solution is written in Python 3
 An apple pie requires two pieces of apple. to get the total number of pieces, multiply the number of apples by 3, then add the number of pieces. Dividing the total by 2 will give us the number of apple pies we can make.
 
 
-#take input 
+.. code-block:: python3
+    :linenos:
+    #take input 
 
-arguments = input()
+    arguments = input()
 
-#split input on space, to separate each number we are given
+    #split input on space, to separate each number we are given
 
-arguments_as_list = arguments.split(" ")
+    arguments_as_list = arguments.split(" ")
 
-#inputs are strings so use map to convert to integers, map returns a generator so convert it to a list.
+    #inputs are strings so use map to convert to integers, map returns a generator so convert it to a list.
 
-list_to_integer = list(map(int, arguments_as_list))
+    list_to_integer = list(map(int, arguments_as_list))
 
-#assign our variables, remembering to multiply apples by 3
-apples_pieces = list_to_integer[0]*3
-pieces = list_to_integer[1]
+    #assign our variables, remembering to multiply apples by 3
+    apples_pieces = list_to_integer[0]*3
+    pieces = list_to_integer[1]
 
-#use truncated division to get a round number, cast answer to integer as division returns a float.
-print(int((apples_pieces + pieces)//2))
+    #use truncated division to get a round number, cast answer to integer as division returns a float.
+    print(int((apples_pieces + pieces)//2))
 
 
