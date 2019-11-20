@@ -9,13 +9,14 @@
 `Problem A: Apple Pie <https://atcoder.jp/contests/abc128/tasks/abc128_a>`_
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This solution is written in Python 3
+
 
 An apple pie requires two pieces of apple. to get the total number of pieces, multiply the number of apples by 3, then add the number of pieces. Dividing the total by 2 will give us the number of apple pies we can make.
 
+Code is below:
 
-.. code-block:: python3
-    :linenos:
+.. code-block:: python
+    
     #take input 
 
     arguments = input()
